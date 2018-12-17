@@ -76,7 +76,7 @@ public class GameEngine : MonoBehaviour {
         }
         else
         {
-            if (hit.collider.gameObject.name == "A2")
+            if (hit.collider.gameObject.name == "A3")
             {
                 GameObject go = A3;
                 Destroy(go.gameObject);
