@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +40,8 @@ public class GameEngine : MonoBehaviour {
     List<GameObject> As;
 
     bool next=true;
+    private static System.Random random;
+    private static object syncObj = new object();
 
 
 
@@ -64,6 +67,7 @@ public class GameEngine : MonoBehaviour {
         As.Add(A5);
         As.Add(A6);
         As.Add(A7);
+        random = new System.Random();
     }
 
     // Update is called once per frame
@@ -111,6 +115,8 @@ public class GameEngine : MonoBehaviour {
                 b = randomN(1,20);
                 shortText.GetComponent<Text>().text = a.ToString() + " + "+ b.ToString() + " = ?";
                 result = soma(a, b);
+                indexCorrect = randomN(0, 6);
+                fillTargets(indexCorrect, result);
                 next = false;
             }
 
@@ -190,16 +196,34 @@ public class GameEngine : MonoBehaviour {
 
     }
 
+    void fillTargets(int index, int result)
+    {
+        int i = 0;
+        foreach(Transform x in Rs)
+        {
+
+            if (i == index)
+            {
+                x.GetComponent<Text>().text = result.ToString();
+            }
+            else
+            {
+                x.GetComponent<Text>().text = generateError(result).ToString();
+            }
+            i++;
+        }
+    }
+
     int randomN(int min,int max)
     {
         int a;
-        a = new System.Random().Next(min, max);
+        a = random.Next(min, max);
         return a;
     }
 
     int generateError(int a)
     {
-        a= a + new System.Random().Next(1, 10);
+        a= a + random.Next(1, 10);
         return a;
     }
 
@@ -208,7 +232,8 @@ public class GameEngine : MonoBehaviour {
         return a + b;
 
     }
-   
+
+
 
 
     /* public void ShowAndHide()
@@ -223,7 +248,23 @@ public class GameEngine : MonoBehaviour {
              InfoPanel.SetActive(false);
              show = false;
          }
-     }*/
+     }
+
+ private static void InitRandomNumber(int seed)
+    {
+        random = new System.Random(seed);
+    }
+    private static int GenerateRandomNumber(int max)
+    {
+        lock (syncObj)
+        {
+            if (random == null)
+                random = new System.Random(); // Or exception...
+            return random.Next(max);
+        }
+    }       
+         
+     */
 
     void hide(bool x)
     {
