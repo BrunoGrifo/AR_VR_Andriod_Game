@@ -17,6 +17,7 @@ public class GameEngine : MonoBehaviour {
     public GameObject startButton;
     public Transform shortText;
 
+
     public Transform R1;
     public Transform R2;
     public Transform R3;
@@ -92,7 +93,7 @@ public class GameEngine : MonoBehaviour {
 
         if (!startGame)
         {
-            Focused = hit.collider && (hit.collider.gameObject.name == "testeN");
+            Focused = hit.collider && (hit.collider.gameObject == startButton);
 
             if (Focused)
             {
@@ -101,6 +102,7 @@ public class GameEngine : MonoBehaviour {
                 if (running_time >= lockTime)
                 {
                     startButton.SetActive(false);
+
                     hide(true);
                     startGame = true;
                     running_time = 0;
@@ -116,7 +118,7 @@ public class GameEngine : MonoBehaviour {
         }
         else
         {
-            if (GameNQ==30)
+            if (GameNQ==2)
             {
                 shortText.GetComponent<Text>().text = "Bom trabalho!!! Completaste o jogo com "+incorretas.ToString()+" respostas incorrectas! ";
                 hide(false);
