@@ -16,6 +16,7 @@ public class AimTrigger : MonoBehaviour {
 
     Transform cameraTransform;
     // Use this for initialization
+
     void Start () {
         cameraTransform = Camera.main.transform;
         GetComponent<Renderer>().material = nonFocusedMaterial;

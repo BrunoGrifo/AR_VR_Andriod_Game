@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameEngine : MonoBehaviour {
     public GameObject A1;
     public GameObject A2;
@@ -15,25 +16,29 @@ public class GameEngine : MonoBehaviour {
     public GameObject startButton;
     public Transform shortText;
 
+    public Transform R1;
+    public Transform R2;
+    public Transform R3;
+    public Transform R4;
+    public Transform R5;
+    public Transform R6;
+    public Transform R7;
+
     Collider m_Collider;
-    private bool show = true;
 
     Transform cameraTransform;
     public bool Focused { get; set; }
 
 
 
-    float attackRange = 7f;
     float lockTime = 2.0f;
     float running_time = 0f;
 
     bool startGame = false;
+    List<Transform> Rs;
+    List<GameObject> As;
 
-
-
-
-
-
+    bool next=true;
 
 
 
@@ -43,7 +48,22 @@ public class GameEngine : MonoBehaviour {
     void Start () {
         cameraTransform = Camera.main.transform;
         hide(false);
-
+        Rs = new List<Transform>();
+        As = new List<GameObject>();
+        Rs.Add(R1);
+        Rs.Add(R2);
+        Rs.Add(R3);
+        Rs.Add(R4);
+        Rs.Add(R5);
+        Rs.Add(R6);
+        Rs.Add(R7);
+        As.Add(A1);
+        As.Add(A2);
+        As.Add(A3);
+        As.Add(A4);
+        As.Add(A5);
+        As.Add(A6);
+        As.Add(A7);
     }
 
     // Update is called once per frame
@@ -53,6 +73,9 @@ public class GameEngine : MonoBehaviour {
         RaycastHit hit;
         Ray cameraGaze = new Ray(cameraTransform.position, cameraTransform.forward);
         Physics.Raycast(cameraGaze, out hit, Mathf.Infinity);
+        string act;
+        int a, b,result,indexCorrect;
+
 
         if (!startGame)
         {
@@ -70,22 +93,122 @@ public class GameEngine : MonoBehaviour {
                     Destroy(go.gameObject);
                     hide(true);
                     startGame = true;
+                    running_time = 0;
 
                 }
+
+            }
+            else
+            {
+                running_time = 0;
             }
         }
         else
         {
-            if (hit.collider.gameObject.name == "A3")
+            if (next)
             {
-                GameObject go = A3;
-                Destroy(go.gameObject);
+                a = randomN(1,20);
+                b = randomN(1,20);
+                shortText.GetComponent<Text>().text = a.ToString() + " + "+ b.ToString() + " = ?";
+                result = soma(a, b);
+                next = false;
+            }
+
+            if (hit.collider && (hit.collider.gameObject == A1))
+            {
+                act = "A1";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
+
+            }
+            if (hit.collider && (hit.collider.gameObject == A2))
+            {
+                act = "A2";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
+            }
+            if (hit.collider && (hit.collider.gameObject == A3))
+            {
+                act = "A3";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
+            }
+            if (hit.collider && (hit.collider.gameObject == A4))
+            {
+                act = "A4";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
+            }
+            if (hit.collider && (hit.collider.gameObject == A5))
+            {
+                act = "A5";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
+            }
+            if (hit.collider && (hit.collider.gameObject == A6))
+            {
+                act = "A6";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
+            }
+            if (hit.collider && (hit.collider.gameObject == A7))
+            {
+                act = "A7";
+                running_time += Time.deltaTime * 1;
+                if (running_time >= lockTime)
+                {
+
+                }
+                running_time = 0;
             }
         }
 
 
     }
 
+    int randomN(int min,int max)
+    {
+        int a;
+        a = new System.Random().Next(min, max);
+        return a;
+    }
+
+    int generateError(int a)
+    {
+        a= a + new System.Random().Next(1, 10);
+        return a;
+    }
+
+    int soma(int a,int b)
+    {
+        return a + b;
+
+    }
+   
 
 
     /* public void ShowAndHide()

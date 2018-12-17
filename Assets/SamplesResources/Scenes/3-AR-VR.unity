@@ -4802,6 +4802,13 @@ MonoBehaviour:
   A7: {fileID: 1496779340}
   startButton: {fileID: 1511611170}
   shortText: {fileID: 272935971}
+  R1: {fileID: 1465027308}
+  R2: {fileID: 1805875384}
+  R3: {fileID: 298070364}
+  R4: {fileID: 1593619415}
+  R5: {fileID: 1031014374}
+  R6: {fileID: 826194511}
+  R7: {fileID: 193469931}
 --- !u!1 &2037225306
 GameObject:
   m_ObjectHideFlags: 0
