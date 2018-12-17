@@ -47,7 +47,7 @@ public class GameEngine : MonoBehaviour {
 
     Color myRgbColor;
     int GameNQ;
-    int incorretas;
+    int incorretas, result;
 
 
 
@@ -87,7 +87,7 @@ public class GameEngine : MonoBehaviour {
         Ray cameraGaze = new Ray(cameraTransform.position, cameraTransform.forward);
         Physics.Raycast(cameraGaze, out hit, Mathf.Infinity);
         string act;
-        int a, b,result,verify;
+        int a, b,verify;
 
 
         if (!startGame)
@@ -100,13 +100,11 @@ public class GameEngine : MonoBehaviour {
 
                 if (running_time >= lockTime)
                 {
-
-
-                    GameObject go = startButton;
-                    Destroy(go.gameObject);
+                    startButton.SetActive(false);
                     hide(true);
                     startGame = true;
                     running_time = 0;
+                    next = true;
 
                 }
 
@@ -121,15 +119,38 @@ public class GameEngine : MonoBehaviour {
             if (GameNQ==30)
             {
                 shortText.GetComponent<Text>().text = "Bom trabalho!!! Completaste o jogo com "+incorretas.ToString()+" respostas incorrectas! ";
+                hide(false);
+                startGame = false;
+                startButton.SetActive(true);
+                incorretas = 0;
+                GameNQ = 0;
             }
 
             if (next)
             {
                 running_time = 0;
-                a = randomN(1,20);
-                b = randomN(1,20);
-                shortText.GetComponent<Text>().text = a.ToString() + " + "+ b.ToString() + " = ?";
-                result = soma(a, b);
+                if (GameNQ <= 10)
+                {
+                    a = randomN(1, 20);
+                    b = randomN(1, 20);
+                    shortText.GetComponent<Text>().text = a.ToString() + " + " + b.ToString() + " = ?";
+                    result = soma(a, b);
+                }
+                if(GameNQ>10 && GameNQ <= 20)
+                {
+                    a = randomN(1, 20);
+                    b = randomN(1, 20);
+                    shortText.GetComponent<Text>().text = a.ToString() + " - " + b.ToString() + " = ?";
+                    result = divisao(a, b);
+                }
+                if (GameNQ > 20)
+                {
+                    a = randomN(1, 10);
+                    b = randomN(1, 10);
+                    shortText.GetComponent<Text>().text = a.ToString() + " * " + b.ToString() + " = ?";
+                    result = mult(a, b);
+                }
+
                 indexCorrect = randomN(0, 6);
                 fillTargets(indexCorrect, result);
                 next = false;
@@ -357,6 +378,16 @@ public class GameEngine : MonoBehaviour {
         return a + b;
 
     }
+    int divisao(int a, int b)
+    {
+        return a - b;
+
+    }
+    int mult(int a, int b)
+    {
+        return a * b;
+
+    }
     void clean()
     {
         foreach (Transform x in Rs)
@@ -366,36 +397,6 @@ public class GameEngine : MonoBehaviour {
     }
 
 
-
-    /* public void ShowAndHide()
-     {
-         if (!show==false)
-         {
-             InfoPanel.SetActive(true);
-             show = true;
-         }
-         else
-         {
-             InfoPanel.SetActive(false);
-             show = false;
-         }
-     }
-
- private static void InitRandomNumber(int seed)
-    {
-        random = new System.Random(seed);
-    }
-    private static int GenerateRandomNumber(int max)
-    {
-        lock (syncObj)
-        {
-            if (random == null)
-                random = new System.Random(); // Or exception...
-            return random.Next(max);
-        }
-    }       
-         
-     */
 
     void hide(bool x)
     {
@@ -407,4 +408,6 @@ public class GameEngine : MonoBehaviour {
         A6.SetActive(x);
         A7.SetActive(x);
     }
+
+
 }
