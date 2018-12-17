@@ -37,11 +37,17 @@ public class GameEngine : MonoBehaviour {
 
     bool startGame = false;
     List<Transform> Rs;
-    List<GameObject> As;
+    List<String> As;
 
     bool next=true;
     private static System.Random random;
     private static object syncObj = new object();
+    int indexCorrect;
+    Transform chosen;
+
+    Color myRgbColor;
+    int GameNQ;
+    int incorretas;
 
 
 
@@ -52,7 +58,7 @@ public class GameEngine : MonoBehaviour {
         cameraTransform = Camera.main.transform;
         hide(false);
         Rs = new List<Transform>();
-        As = new List<GameObject>();
+        As = new List<String>();
         Rs.Add(R1);
         Rs.Add(R2);
         Rs.Add(R3);
@@ -60,14 +66,17 @@ public class GameEngine : MonoBehaviour {
         Rs.Add(R5);
         Rs.Add(R6);
         Rs.Add(R7);
-        As.Add(A1);
-        As.Add(A2);
-        As.Add(A3);
-        As.Add(A4);
-        As.Add(A5);
-        As.Add(A6);
-        As.Add(A7);
+        As.Add(A1.name);
+        As.Add(A2.name);
+        As.Add(A3.name);
+        As.Add(A4.name);
+        As.Add(A5.name);
+        As.Add(A6.name);
+        As.Add(A7.name);
         random = new System.Random();
+        myRgbColor = new Color();
+        GameNQ = 0;
+        incorretas = 0;
     }
 
     // Update is called once per frame
@@ -78,7 +87,7 @@ public class GameEngine : MonoBehaviour {
         Ray cameraGaze = new Ray(cameraTransform.position, cameraTransform.forward);
         Physics.Raycast(cameraGaze, out hit, Mathf.Infinity);
         string act;
-        int a, b,result,indexCorrect;
+        int a, b,result,verify;
 
 
         if (!startGame)
@@ -92,7 +101,7 @@ public class GameEngine : MonoBehaviour {
                 if (running_time >= lockTime)
                 {
 
-                    shortText.GetComponent<Text>().text = "Start!!!";
+
                     GameObject go = startButton;
                     Destroy(go.gameObject);
                     hide(true);
@@ -109,8 +118,14 @@ public class GameEngine : MonoBehaviour {
         }
         else
         {
+            if (GameNQ==3)
+            {
+                shortText.GetComponent<Text>().text = "Bom trabalho!!! Completaste o jogo com "+incorretas.ToString()+" respostas incorrectas! ";
+            }
+
             if (next)
             {
+                running_time = 0;
                 a = randomN(1,20);
                 b = randomN(1,20);
                 shortText.GetComponent<Text>().text = a.ToString() + " + "+ b.ToString() + " = ?";
@@ -118,17 +133,35 @@ public class GameEngine : MonoBehaviour {
                 indexCorrect = randomN(0, 6);
                 fillTargets(indexCorrect, result);
                 next = false;
+                GameNQ++;
             }
 
             if (hit.collider && (hit.collider.gameObject == A1))
             {
+          
                 act = "A1";
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                    verify = As.IndexOf(act);
+                    if(verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green;
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
+
+                    }
+                    running_time = 0;
 
                 }
-                running_time = 0;
+
 
             }
             if (hit.collider && (hit.collider.gameObject == A2))
@@ -137,9 +170,25 @@ public class GameEngine : MonoBehaviour {
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                  
+                    verify = As.IndexOf(act);
+                    if (verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green;
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
 
+                    }
+                    running_time = 0;
                 }
-                running_time = 0;
+
             }
             if (hit.collider && (hit.collider.gameObject == A3))
             {
@@ -147,9 +196,24 @@ public class GameEngine : MonoBehaviour {
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                    verify = As.IndexOf(act);
+                    if (verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green;
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
 
+                    }
+                    running_time = 0;
                 }
-                running_time = 0;
+
             }
             if (hit.collider && (hit.collider.gameObject == A4))
             {
@@ -157,9 +221,24 @@ public class GameEngine : MonoBehaviour {
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                    verify = As.IndexOf(act);
+                    if (verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green;
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
 
+                    }
+                    running_time = 0;
                 }
-                running_time = 0;
+
             }
             if (hit.collider && (hit.collider.gameObject == A5))
             {
@@ -167,9 +246,24 @@ public class GameEngine : MonoBehaviour {
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                    verify = As.IndexOf(act);
+                    if (verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green; 
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
 
+                    }
+                    running_time = 0;
                 }
-                running_time = 0;
+
             }
             if (hit.collider && (hit.collider.gameObject == A6))
             {
@@ -177,9 +271,24 @@ public class GameEngine : MonoBehaviour {
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                    verify = As.IndexOf(act);
+                    if (verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green;
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
 
+                    }
+                    running_time = 0;
                 }
-                running_time = 0;
+
             }
             if (hit.collider && (hit.collider.gameObject == A7))
             {
@@ -187,10 +296,26 @@ public class GameEngine : MonoBehaviour {
                 running_time += Time.deltaTime * 1;
                 if (running_time >= lockTime)
                 {
+                    verify = As.IndexOf(act);
+                    if (verify == indexCorrect)
+                    {
+                        chosen = Rs[indexCorrect];
+                        chosen.GetComponent<Text>().color = Color.green;
+                        next = true;
+                        clean();
+                    }
+                    else
+                    {
+                        chosen = Rs[verify];
+                        chosen.GetComponent<Text>().color = Color.red;
+                        incorretas++;
 
+                    }
+                    running_time = 0;
                 }
-                running_time = 0;
+        
             }
+
         }
 
 
@@ -232,7 +357,13 @@ public class GameEngine : MonoBehaviour {
         return a + b;
 
     }
-
+    void clean()
+    {
+        foreach (Transform x in Rs)
+        {
+            x.GetComponent<Text>().color = Color.white;
+        }
+    }
 
 
 
