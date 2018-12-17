@@ -10,6 +10,9 @@ public class AimTrigger : MonoBehaviour {
 
     float mFocusedTime;
     bool mTriggered;
+    float attackRange = 7f;
+    float lockTime = 2.0f;
+    float running_time = 0f;
 
     Transform cameraTransform;
     // Use this for initialization
@@ -35,18 +38,22 @@ public class AimTrigger : MonoBehaviour {
 
         if (Focused)
         {
-            GameObject go = GameObject.Find("testeDestroy");
-            Destroy(go.gameObject);
 
 
-            // Update the "focused state" time
-            mFocusedTime += Time.deltaTime;
-            if ((mFocusedTime > activationTime) || startAction)
+            running_time += Time.deltaTime * 1;
+
+            if (running_time >= lockTime)
             {
-                // Debug.Log("Tocou");
-                MakeConnection();
+
+                GameObject go = GameObject.Find("testeDestroy");
+                Destroy(go.gameObject);
+                running_time = 0f;
 
             }
+
+
+
+           
         }
         else
         {
@@ -58,11 +65,6 @@ public class AimTrigger : MonoBehaviour {
         }
     }
 
-    private void MakeConnection()
-    {
-        mTriggered = true;
-        mFocusedTime = 0;
-        Renderer meshRenderer = GetComponent<Renderer>();
-        meshRenderer.material = focusedMaterial;
-    }
+
+
 }
