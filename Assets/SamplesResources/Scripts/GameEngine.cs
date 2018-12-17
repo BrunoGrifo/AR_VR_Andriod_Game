@@ -118,7 +118,7 @@ public class GameEngine : MonoBehaviour {
         }
         else
         {
-            if (GameNQ==2)
+            if (GameNQ==30)
             {
                 shortText.GetComponent<Text>().text = "Bom trabalho!!! Completaste o jogo com "+incorretas.ToString()+" respostas incorrectas! ";
                 hide(false);

@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/brunogrifo/Documents/Unity/deploys/Versão final/V1.apk
+/Users/brunogrifo/Documents/Unity/deploys/Versão final/V3.apk
 SceneListBegin?
 Assets/SamplesResources/Scenes/0-Splash.unity
 Assets/SamplesResources/Scenes/1-About.unity
