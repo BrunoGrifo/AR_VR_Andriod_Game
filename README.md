@@ -7,12 +7,10 @@
 
 ## About APPlica-te
 
-APPlica-te is a VR + AR prototype game designed for children that frequent Elementary school.  
+APPlica-te is a VR + AR prototype game designed for children that frequent Elementary school. This is a game mainly for kids with some difficulties in maths 
 
 
-
-
-Solarized dark             |  Solarized Ocean
+Menu target             |  Cursor target
 :-------------------------:|:-------------------------:
 ![](images/stones.jpg)  |  ![](images/queen.jpg)
 
