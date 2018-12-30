@@ -511,8 +511,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Bem vindo ao IPPlica-te! Pratica matem\xE1tica de uma forma divertida.
-    Quando estiveres pronto, olha para o cubo do lado direito, durante 2 segundos,
-    para come\xE7ar o jogo. Boa sorte!!! "
+    Quando estiveres pronto, olha para o bot\xE3o em baixo, durante 2 segundos, para
+    come\xE7ar o jogo. Boa sorte!!! "
 --- !u!222 &272935973
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1393,7 +1393,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 651933333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.441, z: 0.095}
+  m_LocalPosition: {x: 0, y: -1.64, z: 0.095}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1651489959}

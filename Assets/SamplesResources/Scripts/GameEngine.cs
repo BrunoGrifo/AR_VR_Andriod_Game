@@ -104,6 +104,7 @@ public class GameEngine : MonoBehaviour {
                     startButton.SetActive(false);
 
                     hide(true);
+        
                     startGame = true;
                     running_time = 0;
                     next = true;
