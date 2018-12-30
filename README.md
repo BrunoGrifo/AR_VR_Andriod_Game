@@ -16,7 +16,9 @@ Some other configurations you can take into account is to use Android 4.4 Kit Ka
 ## How to play APPlica-te
 
 At this point we will assume that you already have the application built and ready to run on your andriod phone.
-The first step is to download the images below. They will be needed as targets to trigger the Aumented Reality in the application. The Menu target image is placed on the ground to be used as a target to trigger the menu inside the game and the Cursor target is placed in the 
+The first step is to download the images below. They will be needed as targets to trigger the Aumented Reality in the application. The Menu target image is placed on the ground to be used as a target to trigger the menu in-game and the Cursor target is placed in the the user's foot to trigger the cursor in-game. 
+This is a Virtual Reality game with Foot Menu and so the menu is only displayed when you look down. To select an option, you're foot, witch containts the cursor in-game, has to be put on top of the desired option. 
+Follow the instructions and good luck. Have a great Game!!!
 
 Menu target             |  Cursor target
 :-------------------------:|:-------------------------:
