@@ -1,1 +1,1 @@
-<center>Centered text</center>
+| yo |
