@@ -14,3 +14,4 @@ APPlica-te is a VR + AR prototype game designed for children that frequent Eleme
   <img src="../html/pic_trulli.jpg" alt="Trulli" style="width:100%">
   <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
 </figure>
+
